@@ -5,10 +5,10 @@ Feature: Login windows for authentication
         Given a user is on the website home page
 
     Scenario Outline: Enter correct and incorrect login credentials for authentication
-        When user clicks on basic auth
-        And user enters the <password> and <username>
+        When user clicks on "Basic Auth"
+        When user enters the "password" and "username"
         Then user clicks on the sign in button
-        And login status
+        Then login status
         Examples:
             | password | username     |
             | admin    | admin        |
