@@ -99,7 +99,7 @@ copyright = "2023, KS_BaneleMlamleli"
 # If you don’t need the separation provided between version and release,
 # just set them both to the same value.
 try:
-    from banele_python_selenium_with_no_toolium_project import __version__ as version
+    from src import __version__ as version
 except ImportError:
     version = ""
 

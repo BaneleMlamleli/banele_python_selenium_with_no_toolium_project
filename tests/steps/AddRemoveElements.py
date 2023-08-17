@@ -6,8 +6,6 @@ from selenium.webdriver.common.by import By
 # driver = webdriver.Chrome()
 # driver.maximize_window()
 
-deleteButtonDisplayed = False
-
 # @given('a user is on the website home page')
 # def a_user_is_on_the_website_home_page(context):
 #     driver.get('https://the-internet.kineticskunk.co.za/')
@@ -22,14 +20,13 @@ def user_clicks_on_button_add_element(context):
 
 @then('button Delete is displayed')
 def button_delete_is_displayed(context):
-    if driver.find_element(By.XPATH, "//button[@class='added-manually']").is_displayed():
-        deleteButtonDisplayed = True
-    else:
-        deleteButtonDisplayed = False
+    assert driver.find_element(By.XPATH, "//button[@class='added-manually']").is_displayed() == False, "The Delete button is not displayed"
+
     
 @then('user clicks on the button Delete')
 def user_clicks_on_the_button_delete(context):
-    if deleteButtonDisplayed:
+    deleteButton = driver.find_element(By.XPATH, "//button[@class='added-manually']").is_displayed()
+    if deleteButton:
         driver.find_element(By.XPATH, "//button[@class='added-manually']").click()
     else:
-        assert deleteButtonDisplayed == False, "button not displayed"
+        assert deleteButton == False, "button not displayed"
