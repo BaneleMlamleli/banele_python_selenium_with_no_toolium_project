@@ -3,7 +3,9 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 
-driver = webdriver.Chrome()
+# driver = webdriver.Chrome()
+# driver.maximize_window()
+
 deleteButtonDisplayed = False
 
 # @given('a user is on the website home page')
@@ -14,7 +16,7 @@ deleteButtonDisplayed = False
 # def user_clicks_on_add_remove_elements(context, addRemoveElements):
 #     driver.find_element(By.XPATH, f"//a[normalize-space()='{addRemoveElements}']").click()
 
-@When('user clicks on Add Element button')
+@when('user clicks on Add Element button')
 def user_clicks_on_button_add_element(context):
     driver.find_element(By.XPATH, "//button[@onclick='addElement()']").click()
 
@@ -30,4 +32,4 @@ def user_clicks_on_the_button_delete(context):
     if deleteButtonDisplayed:
         driver.find_element(By.XPATH, "//button[@class='added-manually']").click()
     else:
-        return "button not displayed"
+        assert deleteButtonDisplayed == False, "button not displayed"

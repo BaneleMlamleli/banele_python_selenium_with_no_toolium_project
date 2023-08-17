@@ -3,7 +3,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 
-driver = webdriver.Chrome()
+# driver = webdriver.Chrome()
+# driver.maximize_window()
 
 # @given('a user is on the website home page')
 # def a_user_is_on_the_website_home_page(context):
