@@ -1,17 +1,35 @@
 from behave import given, when, then
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 
-@when('user clicks on Add/Remove Elements')
-def user_clicks_on_add_remove_elements(context):
-    pass
+# driver = webdriver.Chrome()
+# driver.maximize_window()
 
-@When('user clicks on button Add Element')
+deleteButtonDisplayed = False
+
+# @given('a user is on the website home page')
+# def a_user_is_on_the_website_home_page(context):
+#     driver.get('https://the-internet.kineticskunk.co.za/')
+
+# @when('user clicks on "{addRemoveElements}"')
+# def user_clicks_on_add_remove_elements(context, addRemoveElements):
+#     driver.find_element(By.XPATH, f"//a[normalize-space()='{addRemoveElements}']").click()
+
+@when('user clicks on Add Element button')
 def user_clicks_on_button_add_element(context):
-    pass
+    driver.find_element(By.XPATH, "//button[@onclick='addElement()']").click()
 
-@then('Delete button is displayed')
-def delete_button_is_displayed(context):
-    pass
-
-@then('user clicks on Delete button to remove the button')
-def user_clicks_on_delete_button_to_remove_the_button(context):
-    pass
+@then('button Delete is displayed')
+def button_delete_is_displayed(context):
+    if driver.find_element(By.XPATH, "//button[@class='added-manually']").is_displayed():
+        deleteButtonDisplayed = True
+    else:
+        deleteButtonDisplayed = False
+    
+@then('user clicks on the button Delete')
+def user_clicks_on_the_button_delete(context):
+    if deleteButtonDisplayed:
+        driver.find_element(By.XPATH, "//button[@class='added-manually']").click()
+    else:
+        assert deleteButtonDisplayed == False, "button not displayed"
